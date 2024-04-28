@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 public class ServerPoem {
     private static Logger serverlogger = LogManager.getLogger(ServerPoem.class);
-
-    private static poemReaderServer poemServerHandler() throws IOException {
+    private final String filePath;
+    public ServerPoem(String filePath) {
+        this.filePath = filePath;
+    }
+    public static poemReaderServer poemServerHandler() throws IOException {
         String filePath = "C:\\Users\\ticed\\client-server\\client-server\\server\\src\\main\\resources\\Poem.txt";
         BufferedReader in = new BufferedReader(new InputStreamReader(Server.clientSocket.getInputStream()));
         //Open the file for reading
@@ -35,7 +38,6 @@ public class ServerPoem {
         Server.Result getPoemReaderServer = new Server.Result(lineNumber, line);
         return getPoemReaderServer;
     }
-
     private record poemReaderServer(BufferedReader in, BufferedReader reader) {
     }
 
