@@ -19,7 +19,7 @@ public class ClientInput {
         BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 
-        clientInputLogger.info("Enter a number for Poem Line 1 to 24 or (type 'end' to end Poem Line): ");
+        clientInputLogger.info("Enter a number for Poem Line 1 to 24 or (type '000' to end Poem Line): ");
         String inputLine = userInput.readLine();
         lineNumber = clientInputValidate(inputLine);
         if (inputLine.equals("000")) {

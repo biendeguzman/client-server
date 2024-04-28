@@ -41,15 +41,9 @@ import java.io.IOException;
 //    }
 //}
 class ServerPoemReaderTest{
-    private ServerPoem poemReader;
-
-    @BeforeEach
-    public void serverPoemRead(){
-        poemReader = new ServerPoem("C:\\Users\\ticed\\project\\client-server\\server\\src\\main\\resources\\Poem.txt");
-    }
     @Test
     public void testPoemLine() throws IOException {
-        String line = ServerPoem.poemReader();
+        String line = ServerPoem.poemReader(1);
         String expectedLine = "The Road Not Taken";
         assertEquals(expectedLine, line);
     }

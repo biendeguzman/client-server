@@ -9,13 +9,11 @@ public class Server {
             Socket soc = ServerConnect.getSocket();
             //Poem Line Result
             while (true) {
-                Result result = ServerPoem.poemReader();
+                int result = ServerPoem.handleLineFromClient();
                 ServerResult.serverResultHandler(result);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    public record Result(int lineNumber, String line) {
     }
 }

@@ -3,8 +3,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class ServerResult {
-    static void serverResultHandler(Server.Result result) throws IOException {
+    static void serverResultHandler(int result) throws IOException {
         PrintWriter out = new PrintWriter(Server.clientSocket.getOutputStream(), true);
-        out.println("Line " + result.lineNumber() + " : "+ result.line());
+        out.println("Line " + result + " : "+ ServerPoem.poemReader(result));
     }
 }

@@ -8,43 +8,34 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 public class ServerPoem {
     private static Logger serverlogger = LogManager.getLogger(ServerPoem.class);
-    private final String filePath;
-    public ServerPoem(String filePath) {
-        this.filePath = filePath;
-    }
-    public static poemReaderServer poemServerHandler() throws IOException {
+
+    public static String  poemServerHandler() throws IOException {
         String filePath = "C:\\Users\\ticed\\client-server\\client-server\\server\\src\\main\\resources\\Poem.txt";
-        BufferedReader in = new BufferedReader(new InputStreamReader(Server.clientSocket.getInputStream()));
-        //Open the file for reading
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        poemReaderServer result = new poemReaderServer(in, reader);
-        return result;
+        return filePath;
     }
-    public static Server.Result poemReader() throws IOException {
-        poemReaderServer result = poemServerHandler();
-        int lineNumber = handleLineFromClient(result.in());
+    public static int handleLineFromClient() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(Server.clientSocket.getInputStream()));
+        String input = in.readLine();
+        int lineNumber = serverValidate(input);
+        if(lineNumber == 000){
+            Server.clientSocket.close();
+        }
+        return lineNumber;
+    }
+    public static String poemReader(int lineNumber) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(poemServerHandler()));
         //Line Starts
         int currentLine = 1;
         String line;
-        while ((line = result.reader().readLine()) != null) {
+        while ((line = reader.readLine()) != null) {
             if (currentLine == lineNumber) {
                 serverlogger.info("Line " + lineNumber + ": " + line);
                 break;
             }
             currentLine++;
         }
-        result.reader().close();
-        // Validate the lineNumber
-        Server.Result getPoemReaderServer = new Server.Result(lineNumber, line);
-        return getPoemReaderServer;
-    }
-    private record poemReaderServer(BufferedReader in, BufferedReader reader) {
-    }
-
-    private static int handleLineFromClient(BufferedReader in) throws IOException {
-        String input = in.readLine();
-        int lineNumber = serverValidate(input);
-        return lineNumber;
+        reader.close();
+        return line;
     }
 
     public static int serverValidate(String input) {
@@ -60,4 +51,3 @@ public class ServerPoem {
         }
     }
 }
-
