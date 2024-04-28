@@ -36,17 +36,17 @@ class ServerPoemTest {
         assertEquals(1000, result);
     }
 }
-//class ServerPoemReaderTest{
-//    private static final String filepath = "C:\\Users\\ticed\\project\\client-server\\server\\src\\main\\resources\\Poem.txt";
-//    private ServerPoem poemReader;
-//
-//    @BeforeEach
-//    public void serverPoemRead(){
-//        poemReader = new ServerPoem();
-//    }
-//    @Test
-//    public void testInput(){
-//        int result = ServerPoem.poemReader(1);
-//        assertEquals("The Road Not Taken",result);
-//    }
-//}
+class ServerPoemReaderTest{
+    private static final String filepath = "C:\\Users\\ticed\\project\\client-server\\server\\src\\main\\resources\\Poem.txt";
+    private ServerPoem poemReader;
+
+    @BeforeEach
+    public void serverPoemRead(){
+        poemReader = new ServerPoem();
+    }
+    @Test
+    public void testInput(){
+        int result = ServerPoem.poemReader(1);
+        assertEquals("The Road Not Taken",result);
+    }
+}

@@ -15,7 +15,6 @@ public class Client {
                 clientInputToServer(result.soc()); //UserInput
                 clientResult(result.soc());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -23,4 +22,3 @@ public class Client {
     public record ClientConnect(Socket soc, BufferedReader userInput) {
     }
 }
-//a

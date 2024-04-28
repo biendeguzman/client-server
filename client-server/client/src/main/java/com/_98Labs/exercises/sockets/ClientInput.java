@@ -19,15 +19,15 @@ public class ClientInput {
         BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 
-            clientInputLogger.info("Enter a number for Poem Line 1 to 24 or (type 'end' to end Poem Line): ");
-            String inputLine = userInput.readLine();
-            lineNumber = clientInputValidate(inputLine);
-            if (inputLine.equalsIgnoreCase("end")) {
-                clientInputLogger.warn("Poem line terminated");
-                soc.close();
-            }else {
-                out.println(lineNumber);
-            }
+        clientInputLogger.info("Enter a number for Poem Line 1 to 24 or (type 'end' to end Poem Line): ");
+        String inputLine = userInput.readLine();
+        lineNumber = clientInputValidate(inputLine);
+        if (inputLine.equals("000")) {
+            clientInputLogger.warn("Poem line terminated");
+            soc.close();
+        } else {
+            out.println(lineNumber);
+        }
     }
     public static int clientInputValidate(String input) throws IllegalArgumentException {
         try {

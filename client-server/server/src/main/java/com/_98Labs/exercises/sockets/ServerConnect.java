@@ -10,8 +10,8 @@ public class ServerConnect {
         serverConnectLogger.info("Waiting for Client...");
         ServerSocket ss = new ServerSocket(5000);
         //accept methods waits until client connects to the server.
-        Socket soc = ss.accept();
+        Server.clientSocket = ss.accept();
         serverConnectLogger.info("Client Accepted!");
-        return soc;
+        return Server.clientSocket;
     }
 }

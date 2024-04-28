@@ -6,20 +6,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.Socket;
 public class ServerPoem {
     private static Logger serverlogger = LogManager.getLogger(ServerPoem.class);
 
-    private static poemReaderServer poemServerHandler(Socket soc) throws IOException {
-        String filePath = "C:\\Users\\ticed\\project\\client-server\\server\\src\\main\\resources\\Poem.txt";
-        BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
+    private static poemReaderServer poemServerHandler() throws IOException {
+        String filePath = "C:\\Users\\ticed\\client-server\\client-server\\server\\src\\main\\resources\\Poem.txt";
+        BufferedReader in = new BufferedReader(new InputStreamReader(Server.clientSocket.getInputStream()));
         //Open the file for reading
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         poemReaderServer result = new poemReaderServer(in, reader);
         return result;
     }
-    public static Server.Result poemReader(Socket soc) throws IOException {
-        poemReaderServer result = poemServerHandler(soc);
+    public static Server.Result poemReader() throws IOException {
+        poemReaderServer result = poemServerHandler();
         int lineNumber = handleLineFromClient(result.in());
         //Line Starts
         int currentLine = 1;
@@ -46,7 +45,7 @@ public class ServerPoem {
         return lineNumber;
     }
 
-    public static int serverValidate(String input){
+    public static int serverValidate(String input) {
         try {
             int lineNumber = Integer.parseInt(input);
             if (lineNumber < 1) {
@@ -55,9 +54,8 @@ public class ServerPoem {
             return lineNumber;
         } catch (NumberFormatException e) {
             serverlogger.warn("Invalid Input");
-            return Integer.parseInt("end");
+            return Integer.parseInt("000");
         }
     }
 }
-
 
