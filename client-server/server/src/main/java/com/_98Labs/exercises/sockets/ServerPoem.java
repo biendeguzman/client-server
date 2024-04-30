@@ -7,12 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 public class ServerPoem {
+    private static String filepath = ServerPoem.class.getClassLoader().getResource("Poem.txt").getPath();
     private static Logger serverlogger = LogManager.getLogger(ServerPoem.class);
 
-    public static String  poemServerHandler() throws IOException {
-        String filePath = "C:\\Users\\ticed\\client-server\\client-server\\server\\src\\main\\resources\\Poem.txt";
-        return filePath;
-    }
     public static int handleLineFromClient() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(Server.clientSocket.getInputStream()));
         String input = in.readLine();
@@ -23,7 +20,7 @@ public class ServerPoem {
         return lineNumber;
     }
     public static String poemReader(int lineNumber) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(poemServerHandler()));
+        BufferedReader reader = new BufferedReader(new FileReader(filepath));
         //Line Starts
         int currentLine = 1;
         String line;
@@ -46,7 +43,7 @@ public class ServerPoem {
             }
             return lineNumber;
         } catch (NumberFormatException e) {
-            serverlogger.warn("Invalid Input");
+            serverlogger.warn("Server Terminated");
             return Integer.parseInt("000");
         }
     }
