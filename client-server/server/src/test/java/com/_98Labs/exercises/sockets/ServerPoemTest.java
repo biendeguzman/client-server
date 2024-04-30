@@ -65,4 +65,10 @@ class ServerPoemReaderTest{
         String expectedLine = null;
         assertEquals(expectedLine, line);
     }
+//    @Test
+//    public void testPoemLine3() throws IOException {
+//        String line = ServerPoem.poemReader(2);
+//        String expectedLine = "calling children out to play.";
+//        assertEquals(expectedLine, line);
+//    }
 }
