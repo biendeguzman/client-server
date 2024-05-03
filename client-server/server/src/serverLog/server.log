@@ -1,5 +1,7 @@
-2024-04-30 18:54:39.803 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Input Exceed Limit
-2024-04-30 18:54:39.828 [main] WARN  com._98Labs.exercises.sockets.ServerPoem - Server Terminated
-2024-04-30 18:54:39.838 [main] WARN  com._98Labs.exercises.sockets.ServerPoem - Server Terminated
-2024-04-30 18:54:39.854 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Line 21: Somewhere ages and ages hence:
-2024-04-30 18:54:39.861 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Line 1: The Road Not Taken
+2024-05-03 09:50:13.290 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Input Exceed Limit
+2024-05-03 09:50:13.347 [main] WARN  com._98Labs.exercises.sockets.ServerPoem - Server Terminated
+2024-05-03 09:50:13.358 [main] WARN  com._98Labs.exercises.sockets.ServerPoem - Server Terminated
+2024-05-03 09:50:13.366 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Invalid line number: -1
+2024-05-03 09:50:13.375 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Line 21: Somewhere ages and ages hence:
+2024-05-03 09:50:13.377 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Invalid line number: 1000
+2024-05-03 09:50:13.381 [main] INFO  com._98Labs.exercises.sockets.ServerPoem - Line 1: The Road Not Taken

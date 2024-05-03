@@ -14,9 +14,6 @@ public class ClientConnection {
         properties = new Properties();
         properties.load(readFile);
     }
-//    private static String portProp()throws IOException{
-//        return
-//    }
     public static Client.ClientConnect getClientConnect() throws IOException {
         configProperties();
         port = Integer.parseInt(properties.getProperty("port"));

@@ -12,18 +12,17 @@ public class ServerPoem {
     private static String filepath = ServerPoem.class.getClassLoader().getResource("Poem.txt").getPath();
     private static Logger serverlogger = LogManager.getLogger(ServerPoem.class);
     private static List<String> poemLines;
-
-    static {
+    public static void eagerLoad(){
         //loading the poem into memory
         poemLines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 poemLines.add(line);
-//                System.out.println(poemLines);
             }
+                serverlogger.info(poemLines);
         } catch (IOException e) {
-            serverlogger.error("Error loading poem: " + e.getMessage());
+            serverlogger.error(e.getMessage());
         }
     }
     public static int handleLineFromClient() throws IOException {
@@ -36,11 +35,12 @@ public class ServerPoem {
         return lineNumber;
     }
     public static String poemReader(int lineNumber) {
+        eagerLoad();
         if (lineNumber < 1 || lineNumber > poemLines.size()) {
             serverlogger.info("Invalid line number: " + lineNumber);
             return null;
         }
-        String line = poemLines.get(lineNumber - 1); // Adjust for 0-based indexing
+        String line = poemLines.get(lineNumber - 1);
         serverlogger.info("Line " + lineNumber + ": " + line);
         return line;
     }
