@@ -39,24 +39,6 @@ public class ServerPoem {
 //        serverlogger.info("Line " + lineNumber + ": " + line);
 //        return line;
 //    }
-//    public static List<String> lazyLoad(int lineNumber) {
-//        List<String> poemLines = new ArrayList<>();
-//        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
-//            int currentLine = 0;
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                if (currentLine == lineNumber){
-//                    poemLines.add(line);
-//                    System.out.println(poemLines);
-//                }
-//                currentLine++;
-//            }
-//        } catch (IOException e) {
-//            serverlogger.error("Error reading file: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//        return poemLines;
-//    }
     public static String poemReader(int lineNumber) throws IOException {
         // Lazy loading the poem lines
         BufferedReader reader = new BufferedReader(new FileReader(filepath));
@@ -66,7 +48,7 @@ public class ServerPoem {
         while ((line = reader.readLine()) != null) {
             if (currentLine == lineNumber) {
                 poemLines.add(line);
-                System.out.println(poemLines);
+                serverlogger.info(poemLines);
                 serverlogger.info("Line " + lineNumber + ": " + line);
                 break;
             }
