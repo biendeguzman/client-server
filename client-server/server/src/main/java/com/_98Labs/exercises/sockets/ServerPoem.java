@@ -11,36 +11,9 @@ import java.util.List;
 public class ServerPoem {
     private static String filepath = ServerPoem.class.getClassLoader().getResource("Poem.txt").getPath();
     private static Logger serverlogger = LogManager.getLogger(ServerPoem.class);
-//    private static List<String> poemLines;
     private static List<String> poemLines = new ArrayList<>();
-//    public static void eagerLoad(){
-//        if(poemLines != null)
-//            return;
-//        //loading the poem into memory
-//        poemLines = new ArrayList<>();
-//        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                poemLines.add(line);
-//            }
-//                serverlogger.info(poemLines);
-//        } catch (IOException e) {
-//            serverlogger.error(e.getMessage());
-//        }
-//    }
-//    static {eagerLoad();}
-//    public static String poemReader(int lineNumber) {
-//        eagerLoad();
-//        if (lineNumber < 1 || lineNumber > poemLines.size()) {
-//            serverlogger.info("Invalid line number: " + lineNumber);
-//            return null;
-//        }
-//        String line = poemLines.get(lineNumber - 1);
-//        serverlogger.info("Line " + lineNumber + ": " + line);
-//        return line;
-//    }
+
     public static String poemReader(int lineNumber) throws IOException {
-        // Lazy loading the poem lines
         BufferedReader reader = new BufferedReader(new FileReader(filepath));
         //Line Starts
         int currentLine = 1;
@@ -66,23 +39,6 @@ public class ServerPoem {
         }
         return lineNumber;
     }
-
-//    public static String poemReader(int lineNumber) throws IOException {
-//    poemLines = lazyLoad(lineNumber); // Lazy loading the poem lines
-//        BufferedReader reader = new BufferedReader(new FileReader(filepath));
-//        //Line Starts
-//        int currentLine = 1;
-//        String line;
-//        while ((line = reader.readLine()) != null) {
-//            if (currentLine == lineNumber) {
-//                serverlogger.info("Line " + lineNumber + ": " + line);
-//                break;
-//            }
-//            currentLine++;
-//        }
-//        reader.close();
-//        return line;
-//    }
     public static int serverValidate(String input) {
         try {
             int lineNumber = Integer.parseInt(input);
